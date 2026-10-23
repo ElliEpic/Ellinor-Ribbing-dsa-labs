@@ -33,17 +33,24 @@ namespace DSA.Lab00
 
         public Player? FindHighestScore()
         {
-               foreach(Player player in _players)
+            if(_players.Count != 0)
             {
-                if(player.Score == 160)
+                Player PlayerWithCurrentHighestScore = _players[0];
+                
+                foreach(Player player in _players)
                 {
-                    return player;
-                }
+                    if(player.Score > PlayerWithCurrentHighestScore.Score)
+                    {
+                        PlayerWithCurrentHighestScore = player;
+
+                    }
+                } 
+            
+                // TODO:
+                // Return the player with the highest score.
+                // Return null when the collection is empty.
+                return PlayerWithCurrentHighestScore;
             }
-         
-            // TODO:
-            // Return the player with the highest score.
-            // Return null when the collection is empty.
             return null;
         }
 
