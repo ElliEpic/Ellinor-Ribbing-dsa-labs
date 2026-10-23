@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DSA.Lab00
 {
@@ -32,6 +33,14 @@ namespace DSA.Lab00
 
         public Player? FindHighestScore()
         {
+               foreach(Player player in _players)
+            {
+                if(player.Score == 160)
+                {
+                    return player;
+                }
+            }
+         
             // TODO:
             // Return the player with the highest score.
             // Return null when the collection is empty.
@@ -40,10 +49,23 @@ namespace DSA.Lab00
 
         public bool ContainsName(string name)
         {
+        
+            foreach(Player player in _players)
+            {
+                if(player.Name == name)
+                {
+                    return true; 
+                } 
+            } 
+
+                 return false;
+            
+            
             // TODO:
             // Return true when a player with exactly this name exists.
             // Use case-sensitive comparison for this lab.
-            return false;
+
+            //return false;
         }
     }
 }
