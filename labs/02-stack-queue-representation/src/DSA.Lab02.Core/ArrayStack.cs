@@ -20,14 +20,14 @@ namespace DSA.Lab02
         public int Count => _count;
         public int Capacity => _items.Length;
 
-        public void Push(T item)
+        public void Push(T item) 
         {
-            if(_count == _items.Length)
+            if(_count == _items.Length) 
             {
                 throw new InvalidOperationException("Stack was full!!!!!!!!!!");
             }
 
-            _items[_count] = item;
+            _items[_count] = item; 
             _count++;
             // TODO: place the item at the logical top and update the state.
             
@@ -50,9 +50,10 @@ namespace DSA.Lab02
             {
                 throw new InvalidOperationException("It's EMPTY");
             }
-        _count--;
-        _items[_count-1] = default;
-        return _items[_count-1];
+        _count--; // Same as: _count = count - 1
+        T item = _items[_count];
+        _items[_count] = default;
+        return item;
             // TODO: remove and return the logical top.
 
         }
