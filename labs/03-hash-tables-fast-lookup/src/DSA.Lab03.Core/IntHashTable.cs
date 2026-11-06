@@ -29,31 +29,47 @@ namespace DSA.Lab03
         public void Set(int key, TValue value)
         {
 
-
-            if (_buckets.Length == 0)
-            {
-                throw new InvalidOperationException("No buckets existsss");
-            }
             
-            //_buckets[GetBucketIndex(key)]
+            List<Entry<TValue>> bucket = _buckets[GetBucketIndex(key)];
 
+            for(int i = 0; i < _count; i++)
+            {
+                if(bucket[i].Key == key)
+                {
+                    bucket[i] = new Entry<TValue>(key, value);
+                    return; 
+                }
+            }
+            bucket.Add(new Entry<TValue>(key, value));
+            _count++; 
             // TODO: search only the correct bucket, replace or append.
-            throw new NotImplementedException();
+  
         }
 
 
 
         public bool TryGetValue(int key, out TValue value)
         {
+             List<Entry<TValue>> bucket = _buckets[GetBucketIndex(key)];
+
+            for(int i = 0; i < _count; i++)
+            {
+                if(bucket[i].Key == key)
+                {
+                    value = bucket[i].Value; 
+                    return true; 
+                }
+            }
             // TODO: search only the correct bucket.
             value = default!;
+            return false; 
             throw new NotImplementedException();
         }
 
         public bool ContainsKey(int key)
         {
             // TODO: reuse the lookup behavior if useful.
-            throw new NotImplementedException();
+           return TryGetValue(key, out _);
         }
 
         private int GetBucketIndex(int key)
